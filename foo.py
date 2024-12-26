@@ -12,7 +12,11 @@ def validate(node):
     else:
         print("BROKEN", node.tag, node.text)
         return False
-    for c in node.getchildren():
+    children = node.getchildren()
+    if children and not rule.get("children"):
+        print("BROKEN RULE", node.tag, node.text)
+        return False
+    for c in children:
         return validate(c)
     return True
 
