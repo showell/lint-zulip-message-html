@@ -1,6 +1,8 @@
 PARENT_RULES = [
     dict(tag="a", children=True),
+    dict(tag="annotation", children=True),
     dict(tag="blockquote", children=True),
+    dict(tag="code", children=True),
     dict(tag="del", children=True),
     dict(tag="div", children=True),
     dict(tag="em", children=True),
@@ -16,12 +18,20 @@ PARENT_RULES = [
 
 CHILD_RULES = [
     dict(tag="br"),
-    dict(tag="code"),
     dict(tag="h1"),
     dict(tag="h6"),
     dict(tag="img"),
     dict(tag="time"),
     dict(tag="video"),
+]
+
+TABLE_RULES = [
+    dict(tag="table", children=True),
+    dict(tag="tbody", children=True),
+    dict(tag="td", children=True),
+    dict(tag="th", children=True),
+    dict(tag="thead", children=True),
+    dict(tag="tr", children=True),
 ]
 
 MATH_PARENT_RULES = [
@@ -38,4 +48,4 @@ MATH_CHILD_RULES = [
     dict(tag="mtext"),
 ]
 
-RULES = PARENT_RULES + CHILD_RULES + MATH_PARENT_RULES + MATH_CHILD_RULES
+RULES = PARENT_RULES + CHILD_RULES + TABLE_RULES + MATH_PARENT_RULES + MATH_CHILD_RULES

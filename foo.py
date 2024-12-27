@@ -2,12 +2,9 @@ from lxml import html
 from rules import RULES
 import json
 
-def check_rule(rule, node):
-    return rule["tag"] == node.tag
-
 def validate(node):
     for rule in RULES:
-        if check_rule(rule, node):
+        if rule["tag"] == node.tag:
             break
     else:
         print("BROKEN", node.tag, node.text)
@@ -17,7 +14,8 @@ def validate(node):
         print("BROKEN RULE", node.tag, node.text)
         return False
     for c in children:
-        return validate(c)
+        if not validate(c):
+            return False
     return True
 
 # Parse the HTML string
