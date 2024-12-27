@@ -36,13 +36,22 @@ acceptable HTML a bit bigger. The ugliest aspect is that
 "span" has a zillion valid attributes from pygment/katex,
 as well as emojis.
 
-Other than that, the Zulip markdown is fairly consistent
-and clean.
+Other than that, the Zulip HTML is fairly consistent
+and clean in terms of structure.
 
-The code is pretty fast. On my box I can validate just
-under a million messages per minute.  It uses lxml for
+The code is pretty fast. On my box I can validate over
+a half million messages per minute.  It uses lxml for
 the actual parsing, and then the custom Python that I
 wrote tries to use appropriate data structures like
 dictionaries, sets, or tiny lists.  The validator just
 walks the AST recursively.
+
+The validator throws exceptions when it finds any errors,
+which avoids ugly debugging code if you're deep into the
+AST.
+
+As far as code quality, there is lots of room for improvement.
+I try to keep it formatted with out-of-the-box `ruff`, so the
+code is tidy.  I am not yet using mypy.  This is tested on
+python 3.12, but I don't anything super exotic.
 
