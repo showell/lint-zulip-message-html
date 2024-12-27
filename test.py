@@ -20,9 +20,8 @@ def validate_rows(rows):
 
 
 json_payload = open("test_data/cases.json").read()
-fixture_rows = [
-    fixture["expected_output"] for fixture in json.loads(json_payload)["regular_tests"]
-]
+fixture_dicts = json.loads(json_payload)["regular_tests"]
+fixture_rows = [fixture["expected_output"] for fixture in fixture_dicts]
 validate_rows(fixture_rows)
 validate_rows(BACKEND_MESSAGES)
 validate_rows(FRONTEND_MESSAGES)

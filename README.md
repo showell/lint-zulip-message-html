@@ -10,11 +10,15 @@ Key files:
 - `validator.py` - this is the main entry point
 - `rules.py` - sets up the actual rules for Zulip
 
-There are a couple sort-of-overlapping use cases for this:
+The code is all Python, and the only dependency is
+the `lxml` library.
+
+There are a couple sort-of-overlapping use cases for this code:
 
 - prevent rogue parsers from creating bad HTML
 - allow WYSIWIG clients to send HTML to Zulip
-- learn about Zulip from reading `rules.py`
+- phase out the use of Zulip markdown in the long run
+- learn about Zulip from reading rules.py`
 
 The code mostly uses an accept-list type of approach,
 as opposed to trying to exclude evil things:
@@ -52,6 +56,11 @@ AST.
 
 As far as code quality, there is lots of room for improvement.
 I try to keep it formatted with out-of-the-box `ruff`, so the
-code is tidy.  I am not yet using mypy.  This is tested on
-python 3.12, but I don't use any super exotic Python features.
+code is tidy. I also use `flake8` out-of-the-box.
+
+I am not yet using mypy.
+
+This code is tested on python 3.12, but I don't use any
+super exotic Python features. It should be relatively simple
+to port to JS and other languages, as it's all data manipulation.
 
