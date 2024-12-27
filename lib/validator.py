@@ -1,7 +1,7 @@
-from debug_helpers import debug_info, BadZulipHtmlException
-from lxml_helpers import parse_html
+from .debug_helpers import debug_info, BadZulipHtmlException
+from .lxml_helpers import parse_html
 
-from rules import (
+from .rules import (
     ALL_TAGS,
     ATTR_TAGS,
     CLASS_VALUES,
@@ -11,7 +11,7 @@ from rules import (
     TEXT_FRIENDLY_TAGS,
 )
 
-from lxml_helpers import (
+from .lxml_helpers import (
     attr_keys,
     full_node_text,
     has_raw_text,

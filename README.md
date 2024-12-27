@@ -7,8 +7,8 @@ as 183 test fixture messages.
 Key files:
 
 - `test.py` - run this to see it action
-- `validator.py` - this is the main entry point
-- `rules.py` - sets up the actual rules for Zulip
+- `lib/validator.py` - this is the main entry point
+- `lib/rules.py` - sets up the actual rules for Zulip
 
 The code is all Python, and the only dependency is
 the `lxml` library.
