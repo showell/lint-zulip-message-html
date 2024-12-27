@@ -71,7 +71,7 @@ LEAF_TAGS = {
     "video",
 }
 
-TEXT_FRIENDLY_NODES = {
+TEXT_FRIENDLY_TAGS = {
     "a",
     "annotation",
     "code",

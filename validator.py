@@ -1,4 +1,4 @@
-from rules import ALL_TAGS, RESTRICTED_TAGS, LEAF_TAGS, TEXT_FRIENDLY_NODES
+from rules import ALL_TAGS, RESTRICTED_TAGS, LEAF_TAGS, TEXT_FRIENDLY_TAGS
 from lxml import etree
 
 
@@ -47,7 +47,7 @@ def validate_children(node):
 
 
 def validate(node):
-    if has_raw_text(node) and node.tag not in TEXT_FRIENDLY_NODES:
+    if has_raw_text(node) and node.tag not in TEXT_FRIENDLY_TAGS:
         print(f"TAG {node.tag} unexpectedly has text")
         print(full_node_text(node))
         raise BrokenException
