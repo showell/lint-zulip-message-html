@@ -18,6 +18,7 @@ def validate_rows(rows):
             print("FAIL")
             sys.exit()
 
+
 for html in EVIL_MESSAGES:
     try:
         validate_html(html)
