@@ -106,6 +106,7 @@ NO_ATTR_TAGS = {
     "h2",
     "h3",
     "h4",
+    "h5",
     "h6",
     "hr",
     "li",
@@ -143,6 +144,10 @@ ATTR_TAGS = dict(
     time=['datetime'],
     video=['data-video-original-url', 'preload', 'src'],
 )
+
+# It's kind of annoying that I have these two data structures, but I
+# like to call out the complicated cases.
+assert (NO_ATTR_TAGS | set(ATTR_TAGS.keys())) == ALL_TAGS
 
 # TODO: Find a way to validate span attributes. Unfortunately, there are a
 #       zillion different span classes in Zulip messages due to things
