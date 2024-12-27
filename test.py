@@ -24,7 +24,7 @@ for html in EVIL_MESSAGES:
         validate_html(html)
     except BadZulipHtmlException:
         continue
-    print(f"FAIL: allowed evil message")
+    print("FAIL: allowed evil message")
     print(html)
     sys.exit()
 
