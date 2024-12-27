@@ -1,4 +1,5 @@
 from debug_helpers import debug_info, BadZulipHtmlException
+from lxml_helpers import parse_html
 
 from rules import (
     ALL_TAGS,
@@ -55,10 +56,10 @@ def validate_children(node):
                 debug_info(full_node_text(node))
                 raise BadZulipHtmlException
 
-        validate(c)
+        validate_node(c)
 
 
-def validate(node):
+def validate_node(node):
     validate_attributes(node)
 
     if has_raw_text(node) and node.tag not in TEXT_FRIENDLY_TAGS:
@@ -72,3 +73,7 @@ def validate(node):
         raise BadZulipHtmlException
 
     validate_children(node)
+
+def validate_html(message_html):
+    root = parse_html(message_html)
+    validate_node(root)

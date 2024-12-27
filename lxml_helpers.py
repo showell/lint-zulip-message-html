@@ -1,4 +1,8 @@
-from lxml import etree
+from lxml import html, etree
+
+
+def parse_html(s):
+    return html.fromstring(s)
 
 
 def attr_keys(node):
