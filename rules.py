@@ -6,10 +6,6 @@ PARENT_RULES = [
     dict(tag="em", children=True),
     dict(tag="li", children=True),
     dict(tag="ol", children=True),
-    dict(tag="math", children=True),
-    dict(tag="mrow", children=True),
-    dict(tag="msub", children=True),
-    dict(tag="msup", children=True),
     dict(tag="p", children=True),
     dict(tag="pre", children=True),
     dict(tag="semantics", children=True),
@@ -24,12 +20,22 @@ CHILD_RULES = [
     dict(tag="h1"),
     dict(tag="h6"),
     dict(tag="img"),
-    dict(tag="mi"),
-    dict(tag="mn"),
-    dict(tag="mo"),
-    dict(tag="mtext"),
     dict(tag="time"),
     dict(tag="video"),
 ]
 
-RULES = PARENT_RULES + CHILD_RULES
+MATH_PARENT_RULES = [
+    dict(tag="math", children=True),
+    dict(tag="mrow", children=True),
+    dict(tag="msub", children=True),
+    dict(tag="msup", children=True),
+]
+
+MATH_CHILD_RULES = [
+    dict(tag="mi"),
+    dict(tag="mn"),
+    dict(tag="mo"),
+    dict(tag="mtext"),
+]
+
+RULES = PARENT_RULES + CHILD_RULES + MATH_PARENT_RULES + MATH_CHILD_RULES
