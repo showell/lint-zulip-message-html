@@ -39,3 +39,10 @@ as well as emojis.
 Other than that, the Zulip markdown is fairly consistent
 and clean.
 
+The code is pretty fast. On my box I can validate just
+under a million messages per minute.  It uses lxml for
+the actual parsing, and then the custom Python that I
+wrote tries to use appropriate data structures like
+dictionaries, sets, or tiny lists.  The validator just
+walks the AST recursively.
+
