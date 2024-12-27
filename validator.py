@@ -1,6 +1,7 @@
 from rules import ALL_TAGS, RESTRICTED_TAGS, LEAF_TAGS
 from lxml import etree
 
+
 class BrokenException(Exception):
     pass
 
