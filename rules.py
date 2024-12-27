@@ -22,16 +22,19 @@ PARENT_RULES = [
 
 CHILD_RULES = [
     dict(tag="br"),
+    dict(tag="hr"),
+    dict(tag="img"),
+    dict(tag="time"),
+    dict(tag="video"),
+]
+
+HEADER_RULES = [
     dict(tag="h1"),
     dict(tag="h2"),
     dict(tag="h3"),
     dict(tag="h4"),
     dict(tag="h5"),
     dict(tag="h6"),
-    dict(tag="hr"),
-    dict(tag="img"),
-    dict(tag="time"),
-    dict(tag="video"),
 ]
 
 LIST_RULES = [
@@ -63,4 +66,4 @@ MATH_CHILD_RULES = [
     dict(tag="mtext"),
 ]
 
-RULES = PARENT_RULES + CHILD_RULES + LIST_RULES +  TABLE_RULES + MATH_PARENT_RULES + MATH_CHILD_RULES
+RULES = PARENT_RULES + CHILD_RULES + HEADER_RULES + LIST_RULES +  TABLE_RULES + MATH_PARENT_RULES + MATH_CHILD_RULES
