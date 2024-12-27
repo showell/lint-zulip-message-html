@@ -2,8 +2,8 @@ import json
 import sys
 from lxml import html
 from validator import validate, BrokenException
-from backend_messages import BACKEND_MESSAGES
-from frontend_messages import FRONTEND_MESSAGES
+from test_data.backend_messages import BACKEND_MESSAGES
+from test_data.frontend_messages import FRONTEND_MESSAGES
 
 
 def validate_rows(rows):
@@ -19,7 +19,7 @@ def validate_rows(rows):
             sys.exit()
 
 
-json_payload = open("cases.json").read()
+json_payload = open("test_data/cases.json").read()
 fixture_rows = [
     fixture["expected_output"] for fixture in json.loads(json_payload)["regular_tests"]
 ]
