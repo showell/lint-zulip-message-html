@@ -1,22 +1,33 @@
 import json
 import sys
-from lib.debug_helpers import BadZulipHtmlException
+from lib.debug_helpers import BadZulipHtmlException, turn_on_debugging
 from lib.validator import validate_html
 from test_data.backend_messages import BACKEND_MESSAGES
 from test_data.frontend_messages import FRONTEND_MESSAGES
+from test_data.evil_message import EVIL_MESSAGES
 
 
 def validate_rows(rows):
     print(f"about to validate {len(rows)} rows")
-    for row_html in rows:
-        if row_html == "":
+    for html in rows:
+        if html == "":
             continue
         try:
-            validate_html(row_html)
+            validate_html(html)
         except BadZulipHtmlException:
             print("FAIL")
             sys.exit()
 
+for html in EVIL_MESSAGES:
+    try:
+        validate_html(html)
+    except BadZulipHtmlException:
+        continue
+    print(f"FAIL: allowed evil message")
+    print(html)
+    sys.exit()
+
+turn_on_debugging()
 
 json_payload = open("test_data/cases.json").read()
 fixture_dicts = json.loads(json_payload)["regular_tests"]
