@@ -28,22 +28,18 @@ def validate_children(node):
     children = node.getchildren()
 
     if children and node.tag in LEAF_TAGS:
-        print("UNEXPECTED CHILDREN", node.tag, full_node_text(node))
+        print(f"UNEXPECTED CHILDREN for {node.tag}")
+        print(full_node_text(node))
         raise BrokenException
 
     for c in children:
         if node.tag in RESTRICTED_TAGS:
             if c.tag not in RESTRICTED_TAGS[node.tag]:
-                print(
-                    f"UNEXPECTED CHILD {c.tag} OF {node.tag}",
-                    node.tag,
-                    full_node_text(node),
-                )
+                print(f"UNEXPECTED CHILD {c.tag} OF {node.tag}")
+                print(full_node_text(node))
                 raise BrokenException
 
-        if not validate(c):
-            return False
-    return True
+        validate(c)
 
 
 def validate(node):
@@ -53,11 +49,8 @@ def validate(node):
         raise BrokenException
 
     if node.tag not in ALL_TAGS:
-        print("UNSUPPORTED TAG", node.tag, full_node_text(node))
+        print(f"UNSUPPORTED TAG {node.tag}")
+        print(full_node_text(node))
         raise BrokenException
 
-    if not validate_children(node):
-        print("BROKEN TAG", node.tag, full_node_text(node))
-        raise BrokenException
-
-    return True
+    validate_children(node)
