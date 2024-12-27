@@ -7,33 +7,16 @@ from rules import (
     RESTRICTED_TAGS,
     TEXT_FRIENDLY_TAGS,
 )
-from lxml import etree
+
+from lxml_helpers import (
+    attr_keys,
+    full_node_text,
+    has_raw_text,
+)
 
 
 class BrokenException(Exception):
     pass
-
-
-def attr_keys(node):
-    return tuple(sorted(node.attrib.keys()))
-
-
-def full_node_text(node):
-    return etree.tostring(node, encoding="unicode", method="html")
-
-
-def has_raw_text(node):
-    # Check if the node itself has text content
-    if node.text and node.text.strip():
-        return True
-
-    # Check if any child node has tail text
-    for child in node.iterchildren():
-        if child.tail and child.tail.strip():
-            return True
-
-    # If no text was found, return False
-    return False
 
 
 def validate_attributes(node):
