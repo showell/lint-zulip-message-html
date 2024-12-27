@@ -12,10 +12,12 @@ def validate_html(s):
     return True
 
 json_payload = open("cases.json").read()
-for fixture in json.loads(json_payload)['regular_tests']:
-    s = fixture["expected_output"]
+rows = [fixture["expected_output"] for fixture in json.loads(json_payload)['regular_tests']]
+rows += json.loads(open("backend_messages.json").read())
+
+for row_html in rows:
     try:
-        success = validate_html(s)
+        success = validate_html(row_html)
     except BrokenException:
         print ("FAIL")
         break
