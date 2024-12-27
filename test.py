@@ -4,7 +4,7 @@ from lib.debug_helpers import BadZulipHtmlException, turn_on_debugging
 from lib.validator import validate_html
 from test_data.backend_messages import BACKEND_MESSAGES
 from test_data.frontend_messages import FRONTEND_MESSAGES
-from test_data.evil_message import EVIL_MESSAGES
+from test_data.evil_messages import EVIL_MESSAGES
 
 
 def validate_rows(rows):
