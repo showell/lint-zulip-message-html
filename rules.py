@@ -1,3 +1,10 @@
+"""
+We build a list of rules here to validate Zulip markdown
+HMTL.  Note that the caller puts these rules into a
+defaultdict of lists to make the checks more efficient,
+so the order here isn't actually relevant.
+"""
+
 PARENT_RULES = [
     dict(tag="a", children=True),
     dict(tag="annotation", children=True),
@@ -6,14 +13,11 @@ PARENT_RULES = [
     dict(tag="del", children=True),
     dict(tag="div", children=True),
     dict(tag="em", children=True),
-    dict(tag="li", children=True),
-    dict(tag="ol", children=True),
     dict(tag="p", children=True),
     dict(tag="pre", children=True),
     dict(tag="semantics", children=True),
     dict(tag="span", children=True),
     dict(tag="strong", children=True),
-    dict(tag="ul", children=True),
 ]
 
 CHILD_RULES = [
@@ -23,6 +27,12 @@ CHILD_RULES = [
     dict(tag="img"),
     dict(tag="time"),
     dict(tag="video"),
+]
+
+LIST_RULES = [
+    dict(tag="li", children=True),
+    dict(tag="ol", children=True),
+    dict(tag="ul", children=True),
 ]
 
 TABLE_RULES = [
@@ -48,4 +58,4 @@ MATH_CHILD_RULES = [
     dict(tag="mtext"),
 ]
 
-RULES = PARENT_RULES + CHILD_RULES + TABLE_RULES + MATH_PARENT_RULES + MATH_CHILD_RULES
+RULES = PARENT_RULES + CHILD_RULES + LIST_RULES +  TABLE_RULES + MATH_PARENT_RULES + MATH_CHILD_RULES
