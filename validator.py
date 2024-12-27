@@ -4,14 +4,18 @@ from lxml import etree
 
 RULES_DICT = defaultdict(list)
 
+
 class BrokenException(Exception):
     pass
+
 
 for rule in RULES:
     RULES_DICT[rule["tag"]].append(rule)
 
+
 def node_text(node):
     return etree.tostring(node, encoding="unicode", method="html")
+
 
 def validate_children(rule, node):
     children = node.getchildren()
@@ -24,10 +28,12 @@ def validate_children(rule, node):
             return False
     return True
 
+
 def validate_rule(rule, node):
     if not validate_children(rule, node):
         return False
     return True
+
 
 def validate(node):
     if node.tag not in RULES_DICT:
