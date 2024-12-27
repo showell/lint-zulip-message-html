@@ -6,6 +6,10 @@ class BrokenException(Exception):
     pass
 
 
+def attr_keys(node):
+    return tuple(sorted(node.attrib.keys()))
+
+
 def full_node_text(node):
     return etree.tostring(node, encoding="unicode", method="html")
 
@@ -41,8 +45,12 @@ def validate_children(node):
 
         validate(c)
 
-
 def validate(node):
+    # TODO: add checks
+    for key in attr_keys(node):
+        if key == "class":
+            pass
+
     if has_raw_text(node) and node.tag not in TEXT_FRIENDLY_TAGS:
         print(f"TAG {node.tag} unexpectedly has text")
         print(full_node_text(node))
