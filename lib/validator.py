@@ -59,19 +59,20 @@ def validate_children(node):
         validate_node(c)
 
 
-def validate_node(node):
-    validate_attributes(node)
-
+def validate_text(node):
     if has_raw_text(node) and node.tag not in TEXT_FRIENDLY_TAGS:
         debug_info(f"TAG {node.tag} unexpectedly has text")
         debug_info(full_node_text(node))
         raise BadZulipHtmlException
 
+def validate_node(node):
     if node.tag not in ALL_TAGS:
         debug_info(f"UNSUPPORTED TAG {node.tag}")
         debug_info(full_node_text(node))
         raise BadZulipHtmlException
 
+    validate_attributes(node)
+    validate_text(node)
     validate_children(node)
 
 def validate_html(message_html):
