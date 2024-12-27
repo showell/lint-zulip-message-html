@@ -132,17 +132,25 @@ NO_ATTR_TAGS = {
 
 
 ATTR_TAGS = dict(
-    a=['class', 'data-id', 'data-stream-id', 'href', 'title'],
-    annotation=['encoding'],
-    div=['aria-hidden', 'class', 'data-code-language'],
-    img=['alt', 'class', 'data-original-dimensions', 'src', 'title'],
-    math=['display', 'xmlns'],
-    mi=['mathvariant'],
-    mo=['lspace', 'mathvariant', 'rspace', 'separator', 'stretchy'],
-    ol=['start'],
-    span=['aria-hidden', 'aria-label', 'class', 'data-user-id', 'role', 'style', 'title'],
-    time=['datetime'],
-    video=['data-video-original-url', 'preload', 'src'],
+    a=["class", "data-id", "data-stream-id", "href", "title"],
+    annotation=["encoding"],
+    div=["aria-hidden", "class", "data-code-language"],
+    img=["alt", "class", "data-original-dimensions", "src", "title"],
+    math=["display", "xmlns"],
+    mi=["mathvariant"],
+    mo=["lspace", "mathvariant", "rspace", "separator", "stretchy"],
+    ol=["start"],
+    span=[
+        "aria-hidden",
+        "aria-label",
+        "class",
+        "data-user-id",
+        "role",
+        "style",
+        "title",
+    ],
+    time=["datetime"],
+    video=["data-video-original-url", "preload", "src"],
 )
 
 # It's kind of annoying that I have these two data structures, but I
@@ -153,7 +161,18 @@ assert (NO_ATTR_TAGS | set(ATTR_TAGS.keys())) == ALL_TAGS
 #       zillion different span classes in Zulip messages due to things
 #       like katex and emoji handling.
 CLASS_VALUES = dict(
-    a=['message-link', 'stream', 'stream-topic'],
-    div=['codehilite', 'inline-preview-twitter', 'message_inline_image', 'message_inline_image message_inline_video', 'spoiler-block', 'spoiler-content', 'spoiler-header', 'twitter-image', 'twitter-tweet', 'youtube-video message_inline_image'],
-    img=['emoji', 'twitter-avatar'],
+    a=["message-link", "stream", "stream-topic"],
+    div=[
+        "codehilite",
+        "inline-preview-twitter",
+        "message_inline_image",
+        "message_inline_image message_inline_video",
+        "spoiler-block",
+        "spoiler-content",
+        "spoiler-header",
+        "twitter-image",
+        "twitter-tweet",
+        "youtube-video message_inline_image",
+    ],
+    img=["emoji", "twitter-avatar"],
 )

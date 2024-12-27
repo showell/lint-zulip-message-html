@@ -1,4 +1,12 @@
-from rules import ALL_TAGS, ATTR_TAGS, NO_ATTR_TAGS, RESTRICTED_TAGS, LEAF_TAGS, TEXT_FRIENDLY_TAGS, CLASS_VALUES
+from rules import (
+    ALL_TAGS,
+    ATTR_TAGS,
+    CLASS_VALUES,
+    LEAF_TAGS,
+    NO_ATTR_TAGS,
+    RESTRICTED_TAGS,
+    TEXT_FRIENDLY_TAGS,
+)
 from lxml import etree
 
 
@@ -35,7 +43,7 @@ def validate_attributes(node):
         print(full_node_text(node))
         raise BrokenException
 
-    if node.tag in ATTR_TAGS: 
+    if node.tag in ATTR_TAGS:
         for key in keys:
             if key not in ATTR_TAGS[node.tag]:
                 print(f"TAG {node.tag} has unknown attr {key}")
@@ -67,6 +75,7 @@ def validate_children(node):
                 raise BrokenException
 
         validate(c)
+
 
 def validate(node):
     validate_attributes(node)
