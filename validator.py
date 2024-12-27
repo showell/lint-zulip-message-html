@@ -1,4 +1,4 @@
-from rules import RULES
+from rules import RESTRICTED_TAGS, RULES, LEAF_TAGS
 from collections import defaultdict
 from lxml import etree
 
@@ -19,11 +19,17 @@ def node_text(node):
 
 def validate_children(rule, node):
     children = node.getchildren()
-    if children and not rule.get("children"):
+
+    if children and node.tag in LEAF_TAGS:
         print("UNEXPECTED CHILDREN", node.tag, node_text(node))
         raise BrokenException
 
     for c in children:
+        if node.tag in RESTRICTED_TAGS:
+            if c.tag not in RESTRICTED_TAGS[node.tag]:
+                print(f"UNEXPECTED CHILD OF {node.tag}", node.tag, node_text(node))
+                raise BrokenException
+
         if not validate(c):
             return False
     return True
