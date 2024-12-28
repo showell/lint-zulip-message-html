@@ -68,13 +68,14 @@ def validate_parent_child_restrictions(node, children):
                 debug_info(full_node_text(node))
                 raise BadZulipHtmlException
 
-        validate_node(c)
-
 
 def validate_children(node):
     children = node.getchildren()
     validate_leaf_tag(node, children)
     validate_parent_child_restrictions(node, children)
+
+    for c in children:
+        validate_node(c)
 
 
 def validate_text(node):
