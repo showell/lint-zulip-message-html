@@ -1,7 +1,7 @@
 from .debug_helpers import debug_info, IllegalHtmlException
 from .lxml_helpers import parse_html
 from .types import Node, ValidationConfig
-
+from typing import Set
 from .lxml_helpers import (
     attr_keys,
     full_node_text,
@@ -9,14 +9,14 @@ from .lxml_helpers import (
 )
 
 
-def validate_no_attr_tags(config: ValidationConfig, node: Node, keys) -> None:
+def validate_no_attr_tags(config: ValidationConfig, node: Node, keys: Set[str]) -> None:
     if keys and node.tag in config.no_attr_tags:
         debug_info(f"TAG {node.tag} should never have attributes")
         debug_info(full_node_text(node))
         raise IllegalHtmlException
 
 
-def validate_attr_tags(config: ValidationConfig, node: Node, keys) -> None:
+def validate_attr_tags(config: ValidationConfig, node: Node, keys: Set[str]) -> None:
     if node.tag in config.attr_tags:
         for key in keys:
             if key not in config.attr_tags[node.tag]:
@@ -26,7 +26,7 @@ def validate_attr_tags(config: ValidationConfig, node: Node, keys) -> None:
                 raise IllegalHtmlException
 
 
-def validate_attr_classes(config: ValidationConfig, node: Node, keys) -> None:
+def validate_attr_classes(config: ValidationConfig, node: Node, keys: Set[str]) -> None:
     if node.tag in config.class_values and "class" in keys:
         allowed_class_values = config.class_values[node.tag]
         node_class = str(node.attrib["class"])
@@ -36,7 +36,7 @@ def validate_attr_classes(config: ValidationConfig, node: Node, keys) -> None:
             raise IllegalHtmlException
 
 
-def validate_styles(config: ValidationConfig, node: Node, keys) -> None:
+def validate_styles(config: ValidationConfig, node: Node, keys: Set[str]) -> None:
     if "style" not in keys:
         return
 
