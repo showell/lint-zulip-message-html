@@ -44,12 +44,15 @@ as well as emojis.
 Other than that, the Zulip HTML is fairly consistent
 and clean in terms of structure.
 
-The code is pretty fast. On my box I can validate over
-a half million messages per minute.  It uses lxml for
-the actual parsing, and then the custom Python that I
-wrote tries to use appropriate data structures like
-dictionaries, sets, or tiny lists.  The validator just
-walks the AST recursively.
+The code is pretty fast. On my box I can validate almost
+a million messages per minute.
+
+TECH DETAILS: The validator code uses the popular `lxml`
+library for the actual parsing of the HTML.  Then,
+my custom Python code uses appropriate data structures like
+dictionaries, sets, or tiny lists to ensure speed.
+Each call to `validate_html` makes an AST and then walks
+it recursively.
 
 The validator throws exceptions when it finds any errors,
 which avoids ugly debugging code if you're deep into the
