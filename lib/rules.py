@@ -1,5 +1,5 @@
 from .span_checker import check_span_classes
-from .style_checkers import check_span_style, check_th_td_style
+from .style_checkers import check_span_style, check_svg_style, check_th_td_style
 
 ALL_TAGS = {
     "a",
@@ -62,6 +62,7 @@ CUSTOM_TAG_HANLDERS = dict(
 
 CUSTOM_STYLE_CHECKERS = dict(
     span=check_span_style,
+    svg=check_svg_style,
     th=check_th_td_style,
     td=check_th_td_style,
 )
@@ -196,6 +197,11 @@ ATTR_TAGS = dict(
     time={"datetime"},
     video={"data-video-original-url", "preload", "src"},
 )
+
+for tag, attrs in ATTR_TAGS.items():
+    if "style" in attrs and tag not in CUSTOM_STYLE_CHECKERS:
+        print(f"You need a style checker for {tag} tags")
+        assert False
 
 # It's kind of annoying that I have these two data structures, but I
 # like to call out the complicated cases.

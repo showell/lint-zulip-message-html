@@ -31,8 +31,8 @@ as opposed to trying to exclude evil things:
 Security TODOS:
 - prevent tags like script, applet, etc. (DONE)
 - avoid attributes like onclick, onload, etc. (DONE)
+- scrutinize style attributes (MOSTLY DONE)
 - scrutinize href and src attributes (TODO)
-- scrutinize style attributes (TODO)
 - scrutinize data-foo attributes (TODO)
 - make sure the HTML is well-balanced and tidy (TODO)
 

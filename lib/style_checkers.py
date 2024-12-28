@@ -11,9 +11,6 @@ def check_style(style, valid_keys):
 
     TODO: Add sanity checks for the actual values.
     """
-    if not style.endswith(";"):
-        return False
-
     frags = [frag for frag in style.split(";") if frag != ""]
 
     for frag in frags:
@@ -42,6 +39,18 @@ SPAN_VALID_KEYS = {
 
 def check_span_style(node, style):
     if not check_style(style, SPAN_VALID_KEYS):
+        debug_info(f"BAD style {style} FOR {node.tag}")
+        debug_info(full_node_text(node))
+        raise BadZulipHtmlException
+
+
+SVG_VALID_KEYS = {
+    "width",
+}
+
+
+def check_svg_style(node, style):
+    if not check_style(style, SVG_VALID_KEYS):
         debug_info(f"BAD style {style} FOR {node.tag}")
         debug_info(full_node_text(node))
         raise BadZulipHtmlException
