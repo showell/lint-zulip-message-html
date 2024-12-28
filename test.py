@@ -1,8 +1,5 @@
 import json
 import sys
-
-sys.path.append(".")
-
 from html_validator.debug_helpers import IllegalHtmlException, turn_on_debugging
 from html_validator.validator import validate_html
 from test_data.backend_messages import BACKEND_MESSAGES
