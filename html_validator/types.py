@@ -11,7 +11,7 @@ class ValidationConfig:
     all_tags: Set[str]
     attr_tags: Dict[str, Set[str]]
     class_values: Dict[str, Set[str]]
-    custom_style_checkers: Dict[str, Callable]
+    custom_style_checkers: Dict[str, Callable[[Node, str], None]]
     custom_tag_handlers: Dict[str, Callable[[Node], None]]
     leaf_tags: Set[str]
     no_attr_tags: Set[str]

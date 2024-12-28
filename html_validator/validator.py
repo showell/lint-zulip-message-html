@@ -41,7 +41,7 @@ def validate_styles(config: ValidationConfig, node: Node, keys) -> None:
         return
 
     if node.tag in config.custom_style_checkers:
-        style = node.attrib["style"]
+        style = str(node.attrib["style"])
         config.custom_style_checkers[node.tag](node, style)
 
 
