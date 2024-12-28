@@ -18,13 +18,14 @@ from .lxml_helpers import (
 )
 
 
-def validate_attributes(node):
-    keys = attr_keys(node)
+def validate_no_attr_tags(node, keys):
     if keys and node.tag in NO_ATTR_TAGS:
         debug_info(f"TAG {node.tag} should never have attributes")
         debug_info(full_node_text(node))
         raise BadZulipHtmlException
 
+
+def validate_attr_tags(node, keys):
     if node.tag in ATTR_TAGS:
         for key in keys:
             if key not in ATTR_TAGS[node.tag]:
@@ -33,6 +34,8 @@ def validate_attributes(node):
                 debug_info(full_node_text(node))
                 raise BadZulipHtmlException
 
+
+def validate_attr_classes(node, keys):
     if node.tag in CLASS_VALUES and "class" in keys:
         allowed_class_values = CLASS_VALUES[node.tag]
         node_class = node.attrib["class"]
@@ -42,13 +45,25 @@ def validate_attributes(node):
             raise BadZulipHtmlException
 
 
-def validate_children(node):
-    children = node.getchildren()
+def validate_attributes(node):
+    keys = attr_keys(node)
 
+    validate_no_attr_tags(node, keys)
+    validate_attr_tags(node, keys)
+    validate_attr_classes(node, keys)
+
+
+def validate_leaf_tag(node, children):
     if children and node.tag in LEAF_TAGS:
         debug_info(f"UNEXPECTED CHILDREN for {node.tag}")
         debug_info(full_node_text(node))
         raise BadZulipHtmlException
+
+
+def validate_children(node):
+    children = node.getchildren()
+
+    validate_leaf_tag(node, children)
 
     for c in children:
         if node.tag in RESTRICTED_TAGS:
