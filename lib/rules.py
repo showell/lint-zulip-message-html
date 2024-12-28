@@ -52,7 +52,7 @@ ALL_TAGS = {
     "video",
 }
 
-RESTRICTED_TAGS = dict(
+PARENT_CHILD_MAP = dict(
     a={"code", "video", "img"},
     code={"span"},
     ol={"li"},

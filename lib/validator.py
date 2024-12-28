@@ -7,7 +7,7 @@ from .rules import (
     CLASS_VALUES,
     LEAF_TAGS,
     NO_ATTR_TAGS,
-    RESTRICTED_TAGS,
+    PARENT_CHILD_MAP,
     TEXT_FRIENDLY_TAGS,
 )
 
@@ -62,8 +62,9 @@ def validate_leaf_tag(node, children):
 
 def validate_parent_child_restrictions(node, children):
     for c in children:
-        if node.tag in RESTRICTED_TAGS:
-            if c.tag not in RESTRICTED_TAGS[node.tag]:
+        if node.tag in PARENT_CHILD_MAP:
+            allowed_child_tags = PARENT_CHILD_MAP[node.tag]
+            if c.tag not in allowed_child_tags:
                 debug_info(f"UNEXPECTED CHILD {c.tag} OF {node.tag}")
                 debug_info(full_node_text(node))
                 raise BadZulipHtmlException
@@ -85,12 +86,15 @@ def validate_text(node):
         raise BadZulipHtmlException
 
 
-def validate_node(node):
+def validate_tag_is_even_allowed(node):
     if node.tag not in ALL_TAGS:
         debug_info(f"UNSUPPORTED TAG {node.tag}")
         debug_info(full_node_text(node))
         raise BadZulipHtmlException
 
+
+def validate_node(node):
+    validate_tag_is_even_allowed(node)
     validate_attributes(node)
     validate_text(node)
     validate_children(node)
