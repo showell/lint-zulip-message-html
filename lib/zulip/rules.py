@@ -1,5 +1,6 @@
 from .span_checker import check_span_classes
 from .style_checkers import check_span_style, check_svg_style, check_th_td_style
+from ..generic.types import ValidationConfig
 
 ALL_TAGS = {
     "a",
@@ -225,4 +226,16 @@ CLASS_VALUES = dict(
         "youtube-video message_inline_image",
     },
     img={"emoji", "twitter-avatar"},
+)
+
+CONFIG = ValidationConfig(
+    all_tags=ALL_TAGS,
+    attr_tags=ATTR_TAGS,
+    class_values=CLASS_VALUES,
+    custom_style_checkers=CUSTOM_STYLE_CHECKERS,
+    custom_tag_handlers=CUSTOM_TAG_HANLDERS,
+    leaf_tags=LEAF_TAGS,
+    no_attr_tags=NO_ATTR_TAGS,
+    parent_child_map=PARENT_CHILD_MAP,
+    text_friendly_tags=TEXT_FRIENDLY_TAGS,
 )

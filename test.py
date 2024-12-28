@@ -7,6 +7,7 @@ from test_data.design_messages import DESIGN_MESSAGES
 from test_data.feedback_messages import FEEDBACK_MESSAGES
 from test_data.frontend_messages import FRONTEND_MESSAGES
 from test_data.evil_messages import EVIL_MESSAGES
+from lib.zulip.rules import CONFIG
 
 
 def validate_rows(rows):
@@ -15,7 +16,7 @@ def validate_rows(rows):
         if html == "":
             continue
         try:
-            validate_html(html)
+            validate_html(config=CONFIG, html=html)
         except IllegalHtmlException:
             print("FAIL")
             sys.exit()
@@ -24,7 +25,7 @@ def validate_rows(rows):
 def ensure_evil_messages_fail_checks():
     for html in EVIL_MESSAGES:
         try:
-            validate_html(html)
+            validate_html(config=CONFIG, html=html)
         except IllegalHtmlException:
             continue
         print("FAIL: allowed evil message")

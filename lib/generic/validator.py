@@ -19,35 +19,6 @@ from .lxml_helpers import (
     has_raw_text,
 )
 
-from dataclasses import dataclass
-from typing import Callable, Dict, Set
-
-
-@dataclass
-class ValidationConfig:
-    all_tags: Set[str]
-    attr_tags: Dict[str, Set[str]]
-    class_values: Dict[str, Set[str]]
-    custom_style_checkers: Dict[str, Callable]
-    custom_tag_handlers: Dict[str, Callable]
-    leaf_tags: Set[str]
-    no_attr_tags: Set[str]
-    parent_child_map: Dict[str, Set[str]]
-    text_friendly_tags: Set[str]
-
-
-CONFIG = ValidationConfig(
-    all_tags=ALL_TAGS,
-    attr_tags=ATTR_TAGS,
-    class_values=CLASS_VALUES,
-    custom_style_checkers=CUSTOM_STYLE_CHECKERS,
-    custom_tag_handlers=CUSTOM_TAG_HANLDERS,
-    leaf_tags=LEAF_TAGS,
-    no_attr_tags=NO_ATTR_TAGS,
-    parent_child_map=PARENT_CHILD_MAP,
-    text_friendly_tags=TEXT_FRIENDLY_TAGS,
-)
-
 
 def validate_no_attr_tags(config, node, keys):
     if keys and node.tag in config.no_attr_tags:
@@ -147,7 +118,6 @@ def validate_node(config, node):
     validate_custom_rules_for_tag(config, node)
 
 
-def validate_html(message_html):
-    config = CONFIG
-    root = parse_html(message_html)
+def validate_html(*, config, html):
+    root = parse_html(html)
     validate_node(config, root)

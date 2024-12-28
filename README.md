@@ -8,7 +8,7 @@ Key files:
 
 - `test.py` - run this to see it action
 - `lib/generic/validator.py` - this is the main entry point
-- `lib/zulip/rules.py` - sets up the actual rules for Zulip
+- `lib/zulip/rules.py` - sets up the actual rules for Zulip in `CONFIG`
 
 The code is all Python, and the only dependency is
 the `lxml` library.
@@ -37,10 +37,8 @@ Security TODOS:
 - make sure the HTML is well-balanced and tidy (TODO)
 
 Other TODOS:
-- pass in a CONFIG dataclass to the validator so that it
-  doesn't have to know anything about zulip-specific
-  paths or things (the idea is to extend this eventually
-  for other zulip or non-zulip use cases)
+- make directories more sane
+- run mypy
 
 One of the tricky things about Zulip is that it supports
 pygment and katex syntax, so that makes the universe of
