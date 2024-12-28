@@ -1,7 +1,9 @@
 from html_validator.debug_helpers import debug_info, IllegalHtmlException
 from html_validator.lxml_helpers import full_node_text
+from html_validator.types import Node
+from typing import Set
 
-VALID_SPAN_CLASSES = {
+VALID_SPAN_CLASSES: Set[str] = {
     "arraycolsep",
     "base",
     "bp",
@@ -127,7 +129,7 @@ VALID_SPAN_CLASSES = {
 }
 
 
-def check_span_classes(node):
+def check_span_classes(node: Node) -> None:
     """
     Note that these checks are in addition to the normal
     checks that we do on all tags as defined by rules.py.
@@ -137,9 +139,10 @@ def check_span_classes(node):
     like katex) as well as emoji-related complications.
     """
     if "class" in node.attrib:
-        classes = node.attrib["class"].split(" ")
+        class_string = str(node.attrib["class"])
+        classes = class_string.split(" ")
 
-        if node.attrib["class"].startswith("emoji emoji-"):
+        if class_string.startswith("emoji emoji-"):
             classes = classes[2:]
 
         for c in classes:
