@@ -7,18 +7,11 @@ from .lxml_helpers import (
 )
 
 
-def validate_no_attr_tags(config: ValidationConfig, node: Node, keys: Set[str]) -> None:
-    if keys and node.tag in config.no_attr_tags:
-        raise IllegalHtmlException(
-            node=node,
-            message=f"TAG {node.tag} should never have attributes",
-        )
-
-
-def validate_attr_tags(config: ValidationConfig, node: Node, keys: Set[str]) -> None:
-    if node.tag in config.attr_tags:
+def validate_tag_attributes(config: ValidationConfig, node: Node, keys: Set[str]) -> None:
+    if node.tag in config.tag_attr_map:
+        valid_keys = config.tag_attr_map[node.tag]
         for key in keys:
-            if key not in config.attr_tags[node.tag]:
+            if key not in valid_keys:
                 raise IllegalHtmlException(
                     node=node, message=f"TAG {node.tag} has unknown attr {key}"
                 )
@@ -46,8 +39,7 @@ def validate_styles(config: ValidationConfig, node: Node, keys: Set[str]) -> Non
 def validate_attributes(config: ValidationConfig, node: Node) -> None:
     keys = attr_keys(node)
 
-    validate_no_attr_tags(config, node, keys)
-    validate_attr_tags(config, node, keys)
+    validate_tag_attributes(config, node, keys)
     validate_attr_classes(config, node, keys)
     validate_styles(config, node, keys)
 
@@ -90,7 +82,7 @@ def validate_text(config: ValidationConfig, node: Node) -> None:
 
 
 def validate_tag_is_even_allowed(config: ValidationConfig, node: Node) -> None:
-    if node.tag not in config.all_tags:
+    if node.tag not in config.tag_attr_map:
         raise IllegalHtmlException(node=node, message=f"UNSUPPORTED TAG {node.tag}")
 
 
