@@ -1,6 +1,6 @@
 from .span_checker import check_span_classes
 from .style_checkers import check_span_style, check_svg_style, check_th_td_style
-from html_validator.types import ValidationConfig
+from html_validator.types import Node, ValidationConfig
 from typing import Callable, Dict, Set
 
 ALL_TAGS: Set[str] = {
@@ -58,11 +58,11 @@ ALL_TAGS: Set[str] = {
     "video",
 }
 
-CUSTOM_TAG_HANLDERS: Dict[str, Callable] = dict(
+CUSTOM_TAG_HANLDERS: Dict[str, Callable[[Node], None]] = dict(
     span=check_span_classes,
 )
 
-CUSTOM_STYLE_CHECKERS: Dict[str, Callable] = dict(
+CUSTOM_STYLE_CHECKERS: Dict[str, Callable[[Node, str], None]] = dict(
     span=check_span_style,
     svg=check_svg_style,
     th=check_th_td_style,

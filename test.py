@@ -7,9 +7,10 @@ from test_data.feedback_messages import FEEDBACK_MESSAGES
 from test_data.frontend_messages import FRONTEND_MESSAGES
 from test_data.evil_messages import EVIL_MESSAGES
 from zulip_message_rules.rules import CONFIG
+from typing import List
 
 
-def get_zulip_test_fixture_payloads():
+def get_zulip_test_fixture_payloads() -> List[str]:
     json_payload = open("test_data/cases.json").read()
     fixture_dicts = json.loads(json_payload)["regular_tests"]
     return [fixture["expected_output"] for fixture in fixture_dicts]

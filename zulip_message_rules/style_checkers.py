@@ -19,7 +19,7 @@ SPAN_VALID_KEYS: Set[str] = {
 }
 
 
-def check_span_style(node: Node, style: str):
+def check_span_style(node: Node, style: str) -> None:
     if not check_style(style, SPAN_VALID_KEYS):
         debug_info(f"BAD style {style} FOR {node.tag}")
         debug_info(full_node_text(node))
@@ -31,7 +31,7 @@ SVG_VALID_KEYS: Set[str] = {
 }
 
 
-def check_svg_style(node: Node, style: str):
+def check_svg_style(node: Node, style: str) -> None:
     if not check_style(style, SVG_VALID_KEYS):
         debug_info(f"BAD style {style} FOR {node.tag}")
         debug_info(full_node_text(node))
@@ -43,7 +43,7 @@ TH_TD_VALID_KEYS: Set[str] = {
 }
 
 
-def check_th_td_style(node: Node, style: str):
+def check_th_td_style(node: Node, style: str) -> None:
     if not check_style(style, TH_TD_VALID_KEYS):
         debug_info(f"BAD style {style} FOR {node.tag}")
         debug_info(full_node_text(node))

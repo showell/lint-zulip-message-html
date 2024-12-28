@@ -1,7 +1,7 @@
 from .debug_helpers import debug_info, IllegalHtmlException
 from .lxml_helpers import parse_html
 from .types import Node, ValidationConfig
-from typing import Set
+from typing import List, Set
 from .lxml_helpers import (
     attr_keys,
     full_node_text,
@@ -54,7 +54,9 @@ def validate_attributes(config: ValidationConfig, node: Node) -> None:
     validate_styles(config, node, keys)
 
 
-def validate_leaf_tag(config: ValidationConfig, node: Node, children) -> None:
+def validate_leaf_tag(
+    config: ValidationConfig, node: Node, children: List[Node]
+) -> None:
     if children and node.tag in config.leaf_tags:
         debug_info(f"UNEXPECTED CHILDREN for {node.tag}")
         debug_info(full_node_text(node))
@@ -62,7 +64,7 @@ def validate_leaf_tag(config: ValidationConfig, node: Node, children) -> None:
 
 
 def validate_parent_child_restrictions(
-    config: ValidationConfig, node: Node, children
+    config: ValidationConfig, node: Node, children: List[Node]
 ) -> None:
     for c in children:
         if node.tag in config.parent_child_map:

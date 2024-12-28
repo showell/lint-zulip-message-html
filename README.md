@@ -37,7 +37,6 @@ Security TODOS:
 - make sure the HTML is well-balanced and tidy (TODO)
 
 Other TODOS:
-- run mypy
 
 One of the tricky things about Zulip is that it supports
 pygment and katex syntax, so that makes the universe of
@@ -68,8 +67,8 @@ As far as code quality, there is lots of room for improvement.
 I try to keep it formatted with out-of-the-box `ruff`, so the
 code is tidy. I also use `flake8` out-of-the-box.
 
-I am use some `mypy` annotations, but I am not completely
-thorough with them.
+I use `mypy --strict` for static type safety, although
+there are a few `Any` types.
 
 This code is tested on python 3.12, but I don't use any
 super exotic Python features. It should be relatively simple
