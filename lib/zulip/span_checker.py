@@ -1,5 +1,5 @@
-from .debug_helpers import debug_info, BadZulipHtmlException
-from .lxml_helpers import full_node_text
+from ..generic.debug_helpers import debug_info, BadZulipHtmlException
+from ..generic.lxml_helpers import full_node_text
 
 VALID_SPAN_CLASSES = {
     "arraycolsep",

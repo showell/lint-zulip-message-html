@@ -1,7 +1,7 @@
 import json
 import sys
-from lib.debug_helpers import BadZulipHtmlException, turn_on_debugging
-from lib.validator import validate_html
+from lib.generic.debug_helpers import BadZulipHtmlException, turn_on_debugging
+from lib.generic.validator import validate_html
 from test_data.backend_messages import BACKEND_MESSAGES
 from test_data.design_messages import DESIGN_MESSAGES
 from test_data.feedback_messages import FEEDBACK_MESSAGES

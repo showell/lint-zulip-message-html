@@ -1,7 +1,7 @@
 from .debug_helpers import debug_info, BadZulipHtmlException
 from .lxml_helpers import parse_html
 
-from .rules import (
+from ..zulip.rules import (
     ALL_TAGS,
     ATTR_TAGS,
     CLASS_VALUES,
