@@ -1,4 +1,7 @@
-def check_style(style, valid_keys):
+from typing import Set
+
+
+def check_style(style: str, valid_keys: Set[str]) -> bool:
     """
     Example format:
         height:0.8889em;vertical-align:-0.1944em;

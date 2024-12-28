@@ -21,7 +21,7 @@ def validate_attr_tags(config: ValidationConfig, node: Node, keys: Set[str]) -> 
         for key in keys:
             if key not in config.attr_tags[node.tag]:
                 debug_info(f"TAG {node.tag} has unknown attr {key}")
-                debug_info(sorted(keys))
+                debug_info(str(sorted(keys)))
                 debug_info(full_node_text(node))
                 raise IllegalHtmlException
 
@@ -109,6 +109,6 @@ def validate_node(config: ValidationConfig, node: Node) -> None:
     validate_custom_rules_for_tag(config, node)
 
 
-def validate_html(*, config: ValidationConfig, html) -> None:
+def validate_html(*, config: ValidationConfig, html: str) -> None:
     root = parse_html(html)
     validate_node(config, root)
