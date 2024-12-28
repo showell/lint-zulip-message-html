@@ -2,14 +2,17 @@ class IllegalHtmlException(Exception):
     pass
 
 
-DEBUGGING = False
+def ignore(s):
+    pass
+
+
+DEBUGGING_METHOD = ignore
 
 
 def debug_info(info):
-    if DEBUGGING:
-        print(info)
+    DEBUGGING_METHOD(info)
 
 
-def turn_on_debugging():
-    global DEBUGGING
-    DEBUGGING = True
+def set_debug_info_handler(*, method):
+    global DEBUGGING_METHOD
+    DEBUGGING_METHOD = method

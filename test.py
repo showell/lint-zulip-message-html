@@ -2,7 +2,7 @@ import json
 import sys
 from html_validator.debug_helpers import (
     IllegalHtmlException,
-    turn_on_debugging,
+    set_debug_info_handler,
 )
 from html_validator.validator import validate_html
 from test_data.backend_messages import BACKEND_MESSAGES
@@ -38,7 +38,7 @@ def ensure_evil_messages_fail_checks():
 
 ensure_evil_messages_fail_checks()
 
-turn_on_debugging()
+set_debug_info_handler(method=print)
 
 json_payload = open("test_data/cases.json").read()
 fixture_dicts = json.loads(json_payload)["regular_tests"]
