@@ -8,7 +8,7 @@ Key files:
 
 - `test.py` - run this to see it action
 - `html_validator/validator.py` - this is the main entry point
-- `lib/zulip/rules.py` - sets up the actual rules for Zulip in `CONFIG`
+- `zulip_message_rules/rules.py` - sets up the actual rules for Zulip in `CONFIG`
 
 The code is all Python, and the only dependency is
 the `lxml` library.
@@ -37,7 +37,6 @@ Security TODOS:
 - make sure the HTML is well-balanced and tidy (TODO)
 
 Other TODOS:
-- make directories more sane
 - run mypy
 
 One of the tricky things about Zulip is that it supports

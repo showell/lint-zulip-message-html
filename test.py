@@ -10,7 +10,7 @@ from test_data.design_messages import DESIGN_MESSAGES
 from test_data.feedback_messages import FEEDBACK_MESSAGES
 from test_data.frontend_messages import FRONTEND_MESSAGES
 from test_data.evil_messages import EVIL_MESSAGES
-from lib.zulip.rules import CONFIG
+from zulip_message_rules.rules import CONFIG
 
 
 def validate_rows(rows):
