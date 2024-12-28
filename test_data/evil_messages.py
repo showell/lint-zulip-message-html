@@ -1,10 +1,11 @@
 EVIL_MESSAGES = [
     "<p><script></p>",
-    "<p src='fred'>src is a bad attr</p>",
-    "<a class='fred'></a>",
-    "<a fred=1>fred is bad attr</a>",
+    "<p src='bogus'>src is a bad attr</p>",
+    "<a class='bogus'></a>",
+    "<a bogus=1>bogus is bad attr</a>",
     "<path><div></div></path>",  # path should be leaf
     "<div>text spam</div",
-    "<span class='fred'></span>",
-    "<span class='emoji emoji-whatever fred'></span>",
+    "<span class='bogus'></span>",
+    "<span class='emoji emoji-whatever bogus'></span>",
+    "<span style='bogus'></span>",
 ]

@@ -1,4 +1,5 @@
 from .span_checker import check_span_classes
+from .style_checkers import check_span_style
 
 ALL_TAGS = {
     "a",
@@ -57,6 +58,10 @@ ALL_TAGS = {
 
 CUSTOM_TAG_HANLDERS = dict(
     span=check_span_classes,
+)
+
+CUSTOM_STYLE_CHECKERS = dict(
+    span=check_span_style,
 )
 
 PARENT_CHILD_MAP = dict(

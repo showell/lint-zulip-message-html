@@ -5,6 +5,7 @@ from .rules import (
     ALL_TAGS,
     ATTR_TAGS,
     CLASS_VALUES,
+    CUSTOM_STYLE_CHECKERS,
     CUSTOM_TAG_HANLDERS,
     LEAF_TAGS,
     NO_ATTR_TAGS,
@@ -46,12 +47,22 @@ def validate_attr_classes(node, keys):
             raise BadZulipHtmlException
 
 
+def validate_styles(node, keys):
+    if "style" not in keys:
+        return
+
+    if node.tag in CUSTOM_STYLE_CHECKERS:
+        style = node.attrib["style"]
+        CUSTOM_STYLE_CHECKERS[node.tag](node, style)
+
+
 def validate_attributes(node):
     keys = attr_keys(node)
 
     validate_no_attr_tags(node, keys)
     validate_attr_tags(node, keys)
     validate_attr_classes(node, keys)
+    validate_styles(node, keys)
 
 
 def validate_leaf_tag(node, children):
