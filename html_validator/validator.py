@@ -7,7 +7,9 @@ from .lxml_helpers import (
 )
 
 
-def validate_tag_attributes(config: ValidationConfig, node: Node, keys: Set[str]) -> None:
+def validate_tag_attributes(
+    config: ValidationConfig, node: Node, keys: Set[str]
+) -> None:
     if node.tag in config.tag_attr_map:
         valid_keys = config.tag_attr_map[node.tag]
         for key in keys:
