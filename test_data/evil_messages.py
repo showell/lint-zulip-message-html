@@ -4,4 +4,5 @@ EVIL_MESSAGES = [
     "<a class='fred'></a>",
     "<a fred=1>fred is bad attr</a>",
     "<path><div></div></path>",  # path should be leaf
+    "<div>text spam</div",
 ]

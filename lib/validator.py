@@ -60,11 +60,7 @@ def validate_leaf_tag(node, children):
         raise BadZulipHtmlException
 
 
-def validate_children(node):
-    children = node.getchildren()
-
-    validate_leaf_tag(node, children)
-
+def validate_parent_child_restrictions(node, children):
     for c in children:
         if node.tag in RESTRICTED_TAGS:
             if c.tag not in RESTRICTED_TAGS[node.tag]:
@@ -73,6 +69,12 @@ def validate_children(node):
                 raise BadZulipHtmlException
 
         validate_node(c)
+
+
+def validate_children(node):
+    children = node.getchildren()
+    validate_leaf_tag(node, children)
+    validate_parent_child_restrictions(node, children)
 
 
 def validate_text(node):
