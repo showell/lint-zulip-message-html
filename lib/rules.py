@@ -58,6 +58,7 @@ RESTRICTED_TAGS = dict(
     ol={"li"},
     pre={"span", "code"},
     span={"span", "svg", "math"},
+    svg={"path"},
     table={"thead", "tbody"},
     tbody={"tr"},
     thead={"tr"},
@@ -74,6 +75,7 @@ LEAF_TAGS = {
     "mn",
     "mo",
     "mtext",
+    "path",
     "time",
     "video",
 }
