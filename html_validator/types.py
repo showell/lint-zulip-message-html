@@ -5,6 +5,7 @@ from lxml.etree import _Element
 
 Node = _Element
 
+
 @dataclass
 class ValidationConfig:
     all_tags: Set[str]
