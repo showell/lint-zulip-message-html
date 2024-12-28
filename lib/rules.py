@@ -1,3 +1,5 @@
+from .span_checker import check_span_classes
+
 ALL_TAGS = {
     "a",
     "annotation",
@@ -51,6 +53,10 @@ ALL_TAGS = {
     "ul",
     "video",
 }
+
+CUSTOM_TAG_HANLDERS = dict(
+    span=check_span_classes,
+)
 
 PARENT_CHILD_MAP = dict(
     a={"code", "video", "img"},

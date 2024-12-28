@@ -26,7 +26,7 @@ as opposed to trying to exclude evil things:
 
 - tags must be found in rules.py
 - attributes must be found in rules.py (per tag)
-- classes must be found in rules.py (except for "span")
+- classes must be found in rules.py or validated by custom rules
 
 Security TODOS:
 - prevent tags like script, applet, etc. (DONE)
@@ -40,6 +40,8 @@ pygment and katex syntax, so that makes the universe of
 acceptable HTML a bit bigger. The ugliest aspect is that
 `<span>` tags have a zillion valid HTML classes from pygment/katex,
 as well as a different class for each possible emoji.
+We use the `CUSTOM_TAG_HANLDERS` mechanism to handle some of
+the trickier details of validating those classes.
 
 Other than that, the Zulip HTML is fairly consistent
 and clean in terms of structure.

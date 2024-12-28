@@ -5,6 +5,7 @@ from .rules import (
     ALL_TAGS,
     ATTR_TAGS,
     CLASS_VALUES,
+    CUSTOM_TAG_HANLDERS,
     LEAF_TAGS,
     NO_ATTR_TAGS,
     PARENT_CHILD_MAP,
@@ -93,11 +94,17 @@ def validate_tag_is_even_allowed(node):
         raise BadZulipHtmlException
 
 
+def validate_custom_rules_for_tag(node):
+    if node.tag in CUSTOM_TAG_HANLDERS:
+        CUSTOM_TAG_HANLDERS[node.tag](node)
+
+
 def validate_node(node):
     validate_tag_is_even_allowed(node)
     validate_attributes(node)
     validate_text(node)
     validate_children(node)
+    validate_custom_rules_for_tag(node)
 
 
 def validate_html(message_html):
