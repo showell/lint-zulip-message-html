@@ -7,6 +7,7 @@ from .rules import (
     CLASS_VALUES,
     LEAF_TAGS,
     NO_ATTR_TAGS,
+    PUNT_TAGS,
     RESTRICTED_TAGS,
     TEXT_FRIENDLY_TAGS,
 )
@@ -67,6 +68,9 @@ def validate_text(node):
 
 
 def validate_node(node):
+    if node.tag in PUNT_TAGS:
+        return
+
     if node.tag not in ALL_TAGS:
         debug_info(f"UNSUPPORTED TAG {node.tag}")
         debug_info(full_node_text(node))

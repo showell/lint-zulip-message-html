@@ -2,7 +2,16 @@ from lxml import html, etree
 
 
 def parse_html(s):
-    return html.fromstring(s)
+    node = html.fromstring(s)
+    # work around the annoyting fact that some Zulip
+    # messagea around enclosed in body/html tags
+    # introduces <html> tags around our html
+    if node.tag == "html":
+        node = node.getchildren()[0]
+        assert node.tag == "body"
+        node = node.getchildren()[0]
+
+    return node
 
 
 def attr_keys(node):
