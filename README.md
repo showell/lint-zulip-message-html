@@ -19,6 +19,7 @@ There are a couple sort-of-overlapping use cases for this code:
 - allow WYSIWIG clients to send HTML to Zulip
 - phase out the use of Zulip markdown in the long run
 - learn about Zulip from reading `rules.py`
+- facilitate ports of the Zulip markdown processor (e.g. to Djot) by quickly identifying broken HTML
 
 The code mostly uses an accept-list type of approach,
 as opposed to trying to exclude evil things:
