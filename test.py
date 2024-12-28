@@ -36,7 +36,7 @@ json_payload = open("test_data/cases.json").read()
 fixture_dicts = json.loads(json_payload)["regular_tests"]
 fixture_rows = [fixture["expected_output"] for fixture in fixture_dicts]
 validate_rows(fixture_rows)
-validate_rows(FEEDBACK_MESSAGES)
 validate_rows(DESIGN_MESSAGES)
+validate_rows(FEEDBACK_MESSAGES)
 validate_rows(BACKEND_MESSAGES)
 validate_rows(FRONTEND_MESSAGES)

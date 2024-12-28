@@ -34,13 +34,12 @@ Security TODOS:
 - scrutinize href and src attributes (TODO)
 - scrutinize style attributes (TODO)
 - scrutinize data-foo attributes (TODO)
-- deal with annoying svg tags and children (TODO)
 
 One of the tricky things about Zulip is that it supports
 pygment and katex syntax, so that makes the universe of
 acceptable HTML a bit bigger. The ugliest aspect is that
-"span" has a zillion valid attributes from pygment/katex,
-as well as emojis.
+`<span>` tags has a zillion valid HTML classes from pygment/katex,
+as well as a different class for each possible emoji.
 
 Other than that, the Zulip HTML is fairly consistent
 and clean in terms of structure.

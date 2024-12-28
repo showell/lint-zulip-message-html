@@ -35,10 +35,12 @@ ALL_TAGS = {
     "munderover",
     "ol",
     "p",
+    "path",
     "pre",
     "semantics",
     "span",
     "strong",
+    "svg",
     "table",
     "tbody",
     "td",
@@ -49,9 +51,6 @@ ALL_TAGS = {
     "ul",
     "video",
 }
-
-# TODO LATER
-PUNT_TAGS = {"svg"}
 
 RESTRICTED_TAGS = dict(
     a={"code", "video", "img"},
@@ -162,6 +161,7 @@ ATTR_TAGS = dict(
     mstyle={"displaystyle", "scriptlevel"},
     mtable={"columnalign", "columnspacing", "rowspacing"},
     ol={"start"},
+    path={"d"},
     span={
         "aria-hidden",
         "aria-label",
@@ -172,6 +172,7 @@ ATTR_TAGS = dict(
         "style",
         "title",
     },
+    svg={"height", "preserveaspectratio", "style", "viewbox", "width", "xmlns"},
     td={"style"},
     th={"style"},
     time={"datetime"},
