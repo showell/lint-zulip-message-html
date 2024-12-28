@@ -38,7 +38,7 @@ Security TODOS:
 One of the tricky things about Zulip is that it supports
 pygment and katex syntax, so that makes the universe of
 acceptable HTML a bit bigger. The ugliest aspect is that
-`<span>` tags has a zillion valid HTML classes from pygment/katex,
+`<span>` tags have a zillion valid HTML classes from pygment/katex,
 as well as a different class for each possible emoji.
 
 Other than that, the Zulip HTML is fairly consistent
