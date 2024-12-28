@@ -2,8 +2,8 @@ import sys
 from html_validator.debug_helpers import IllegalHtmlException
 from html_validator.validator import validate_html
 
-def ensure_evil_messages_fail_checks(*, config, evil_rows):
-    for html in evil_rows:
+def ensure_evil_messages_fail_checks(*, config, evil_payloads):
+    for html in evil_payloads:
         try:
             validate_html(config=config, html=html)
         except IllegalHtmlException:
@@ -13,9 +13,9 @@ def ensure_evil_messages_fail_checks(*, config, evil_rows):
         sys.exit()
 
 
-def validate_rows(*, config, rows):
-    print(f"about to validate {len(rows)} rows")
-    for html in rows:
+def validate_payloads(*, config, payloads):
+    print(f"about to validate {len(payloads)} payloads")
+    for html in payloads:
         if html == "":
             continue
         try:
