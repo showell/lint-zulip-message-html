@@ -73,8 +73,8 @@ def validate_parent_child_restrictions(
                 raise IllegalHtmlException
 
 
-def validate_children(config: ValidationConfig, node) -> None:
-    children = node.getchildren()
+def validate_children(config: ValidationConfig, node: Node) -> None:
+    children = list(node.iterchildren())
     validate_leaf_tag(config, node, children)
     validate_parent_child_restrictions(config, node, children)
 
@@ -82,26 +82,26 @@ def validate_children(config: ValidationConfig, node) -> None:
         validate_node(config, c)
 
 
-def validate_text(config: ValidationConfig, node) -> None:
+def validate_text(config: ValidationConfig, node: Node) -> None:
     if has_raw_text(node) and node.tag not in config.text_friendly_tags:
         debug_info(f"TAG {node.tag} unexpectedly has text")
         debug_info(full_node_text(node))
         raise IllegalHtmlException
 
 
-def validate_tag_is_even_allowed(config: ValidationConfig, node) -> None:
+def validate_tag_is_even_allowed(config: ValidationConfig, node: Node) -> None:
     if node.tag not in config.all_tags:
         debug_info(f"UNSUPPORTED TAG {node.tag}")
         debug_info(full_node_text(node))
         raise IllegalHtmlException
 
 
-def validate_custom_rules_for_tag(config: ValidationConfig, node) -> None:
+def validate_custom_rules_for_tag(config: ValidationConfig, node: Node) -> None:
     if node.tag in config.custom_tag_handlers:
         config.custom_tag_handlers[node.tag](node)
 
 
-def validate_node(config: ValidationConfig, node) -> None:
+def validate_node(config: ValidationConfig, node: Node) -> None:
     validate_tag_is_even_allowed(config, node)
     validate_attributes(config, node)
     validate_text(config, node)
