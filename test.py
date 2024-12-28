@@ -21,14 +21,18 @@ def validate_rows(rows):
             sys.exit()
 
 
-for html in EVIL_MESSAGES:
-    try:
-        validate_html(html)
-    except BadZulipHtmlException:
-        continue
-    print("FAIL: allowed evil message")
-    print(html)
-    sys.exit()
+def ensure_evil_messages_fail_checks():
+    for html in EVIL_MESSAGES:
+        try:
+            validate_html(html)
+        except BadZulipHtmlException:
+            continue
+        print("FAIL: allowed evil message")
+        print(html)
+        sys.exit()
+
+
+ensure_evil_messages_fail_checks()
 
 turn_on_debugging()
 
