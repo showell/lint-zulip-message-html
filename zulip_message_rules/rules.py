@@ -1,8 +1,9 @@
 from .span_checker import check_span_classes
 from .style_checkers import check_span_style, check_svg_style, check_th_td_style
 from html_validator.types import ValidationConfig
+from typing import Callable, Dict, Set
 
-ALL_TAGS = {
+ALL_TAGS: Set[str] = {
     "a",
     "annotation",
     "blockquote",
@@ -57,18 +58,18 @@ ALL_TAGS = {
     "video",
 }
 
-CUSTOM_TAG_HANLDERS = dict(
+CUSTOM_TAG_HANLDERS: Dict[str, Callable] = dict(
     span=check_span_classes,
 )
 
-CUSTOM_STYLE_CHECKERS = dict(
+CUSTOM_STYLE_CHECKERS: Dict[str, Callable] = dict(
     span=check_span_style,
     svg=check_svg_style,
     th=check_th_td_style,
     td=check_th_td_style,
 )
 
-PARENT_CHILD_MAP = dict(
+PARENT_CHILD_MAP: Dict[str, Set[str]] = dict(
     a={"code", "video", "img"},
     body={"div", "p"},
     code={"span"},
@@ -84,7 +85,7 @@ PARENT_CHILD_MAP = dict(
     ul={"li"},
 )
 
-LEAF_TAGS = {
+LEAF_TAGS: Set[str] = {
     "annotation",
     "br",
     "hr",
@@ -98,7 +99,7 @@ LEAF_TAGS = {
     "video",
 }
 
-TEXT_FRIENDLY_TAGS = {
+TEXT_FRIENDLY_TAGS: Set[str] = {
     "a",
     "annotation",
     "code",
@@ -122,7 +123,7 @@ TEXT_FRIENDLY_TAGS = {
     "time",
 }
 
-NO_ATTR_TAGS = {
+NO_ATTR_TAGS: Set[str] = {
     "blockquote",
     "body",
     "br",
@@ -160,7 +161,7 @@ NO_ATTR_TAGS = {
 }
 
 
-ATTR_TAGS = dict(
+ATTR_TAGS: Dict[str, Set[str]] = dict(
     a={"class", "data-id", "data-stream-id", "href", "title"},
     annotation={"encoding"},
     div={"aria-hidden", "class", "data-code-language"},
@@ -211,7 +212,7 @@ assert (NO_ATTR_TAGS | set(ATTR_TAGS.keys())) == ALL_TAGS
 # TODO: Find a way to validate span attributes. Unfortunately, there are a
 #       zillion different span classes in Zulip messages due to things
 #       like katex and emoji handling.
-CLASS_VALUES = dict(
+CLASS_VALUES: Dict[str, Set[str]] = dict(
     a={"message-link", "stream", "stream-topic"},
     div={
         "codehilite",
@@ -228,7 +229,7 @@ CLASS_VALUES = dict(
     img={"emoji", "twitter-avatar"},
 )
 
-CONFIG = ValidationConfig(
+CONFIG: ValidationConfig = ValidationConfig(
     all_tags=ALL_TAGS,
     attr_tags=ATTR_TAGS,
     class_values=CLASS_VALUES,

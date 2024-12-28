@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from typing import Callable, Dict, Set
+from lxml.etree import _Element
 
 
 @dataclass
@@ -13,3 +14,5 @@ class ValidationConfig:
     no_attr_tags: Set[str]
     parent_child_map: Dict[str, Set[str]]
     text_friendly_tags: Set[str]
+
+Node = _Element
