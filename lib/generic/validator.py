@@ -1,4 +1,4 @@
-from .debug_helpers import debug_info, BadZulipHtmlException
+from .debug_helpers import debug_info, IllegalHtmlException
 from .lxml_helpers import parse_html
 
 from ..zulip.rules import (
@@ -24,7 +24,7 @@ def validate_no_attr_tags(node, keys):
     if keys and node.tag in NO_ATTR_TAGS:
         debug_info(f"TAG {node.tag} should never have attributes")
         debug_info(full_node_text(node))
-        raise BadZulipHtmlException
+        raise IllegalHtmlException
 
 
 def validate_attr_tags(node, keys):
@@ -34,7 +34,7 @@ def validate_attr_tags(node, keys):
                 debug_info(f"TAG {node.tag} has unknown attr {key}")
                 debug_info(sorted(keys))
                 debug_info(full_node_text(node))
-                raise BadZulipHtmlException
+                raise IllegalHtmlException
 
 
 def validate_attr_classes(node, keys):
@@ -44,7 +44,7 @@ def validate_attr_classes(node, keys):
         if node_class not in allowed_class_values:
             debug_info(f"TAG {node.tag} has unknown class {node_class}")
             debug_info(full_node_text(node))
-            raise BadZulipHtmlException
+            raise IllegalHtmlException
 
 
 def validate_styles(node, keys):
@@ -69,7 +69,7 @@ def validate_leaf_tag(node, children):
     if children and node.tag in LEAF_TAGS:
         debug_info(f"UNEXPECTED CHILDREN for {node.tag}")
         debug_info(full_node_text(node))
-        raise BadZulipHtmlException
+        raise IllegalHtmlException
 
 
 def validate_parent_child_restrictions(node, children):
@@ -79,7 +79,7 @@ def validate_parent_child_restrictions(node, children):
             if c.tag not in allowed_child_tags:
                 debug_info(f"UNEXPECTED CHILD {c.tag} OF {node.tag}")
                 debug_info(full_node_text(node))
-                raise BadZulipHtmlException
+                raise IllegalHtmlException
 
 
 def validate_children(node):
@@ -95,14 +95,14 @@ def validate_text(node):
     if has_raw_text(node) and node.tag not in TEXT_FRIENDLY_TAGS:
         debug_info(f"TAG {node.tag} unexpectedly has text")
         debug_info(full_node_text(node))
-        raise BadZulipHtmlException
+        raise IllegalHtmlException
 
 
 def validate_tag_is_even_allowed(node):
     if node.tag not in ALL_TAGS:
         debug_info(f"UNSUPPORTED TAG {node.tag}")
         debug_info(full_node_text(node))
-        raise BadZulipHtmlException
+        raise IllegalHtmlException
 
 
 def validate_custom_rules_for_tag(node):

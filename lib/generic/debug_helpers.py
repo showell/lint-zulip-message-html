@@ -1,4 +1,4 @@
-class BadZulipHtmlException(Exception):
+class IllegalHtmlException(Exception):
     pass
 
 

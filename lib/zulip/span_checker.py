@@ -1,4 +1,4 @@
-from ..generic.debug_helpers import debug_info, BadZulipHtmlException
+from ..generic.debug_helpers import debug_info, IllegalHtmlException
 from ..generic.lxml_helpers import full_node_text
 
 VALID_SPAN_CLASSES = {
@@ -146,4 +146,4 @@ def check_span_classes(node):
             if c not in VALID_SPAN_CLASSES:
                 debug_info(f"SPAN CLASS {c} is NOT VALID")
                 debug_info(full_node_text(node))
-                raise BadZulipHtmlException
+                raise IllegalHtmlException
