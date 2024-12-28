@@ -8,4 +8,5 @@ EVIL_MESSAGES = [
     "<span class='bogus'></span>",
     "<span class='emoji emoji-whatever bogus'></span>",
     "<span style='bogus'></span>",
+    "<td style='bogus'></td>",
 ]

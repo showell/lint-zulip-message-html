@@ -6,6 +6,10 @@ def check_style(style, valid_keys):
     """
     Example format:
         height:0.8889em;vertical-align:-0.1944em;
+
+    We don't actually validate the values, just the keys.
+
+    TODO: Add sanity checks for the actual values.
     """
     if not style.endswith(";"):
         return False
@@ -38,6 +42,18 @@ SPAN_VALID_KEYS = {
 
 def check_span_style(node, style):
     if not check_style(style, SPAN_VALID_KEYS):
+        debug_info(f"BAD style {style} FOR {node.tag}")
+        debug_info(full_node_text(node))
+        raise BadZulipHtmlException
+
+
+TH_TD_VALID_KEYS = {
+    "text-align",
+}
+
+
+def check_th_td_style(node, style):
+    if not check_style(style, TH_TD_VALID_KEYS):
         debug_info(f"BAD style {style} FOR {node.tag}")
         debug_info(full_node_text(node))
         raise BadZulipHtmlException
