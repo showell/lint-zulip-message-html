@@ -36,6 +36,12 @@ Security TODOS:
 - scrutinize data-foo attributes (TODO)
 - make sure the HTML is well-balanced and tidy (TODO)
 
+Other TODOS:
+- pass in a CONFIG dataclass to the validator so that it
+  doesn't have to know anything about zulip-specific
+  paths or things (the idea is to extend this eventually
+  for other zulip or non-zulip use cases)
+
 One of the tricky things about Zulip is that it supports
 pygment and katex syntax, so that makes the universe of
 acceptable HTML a bit bigger. The ugliest aspect is that
