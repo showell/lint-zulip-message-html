@@ -1,7 +1,5 @@
-from html_validator.debug_helpers import debug_info, IllegalHtmlException
-from html_validator.lxml_helpers import full_node_text
 from html_validator.style_helpers import check_style
-from html_validator.types import Node
+from html_validator.types import IllegalHtmlException, Node
 from typing import Set
 
 
@@ -21,9 +19,9 @@ SPAN_VALID_KEYS: Set[str] = {
 
 def check_span_style(node: Node, style: str) -> None:
     if not check_style(style, SPAN_VALID_KEYS):
-        debug_info(f"BAD style {style} FOR {node.tag}")
-        debug_info(full_node_text(node))
-        raise IllegalHtmlException
+        raise IllegalHtmlException(
+            node=node, message=f"BAD style {style} FOR {node.tag}"
+        )
 
 
 SVG_VALID_KEYS: Set[str] = {
@@ -33,9 +31,9 @@ SVG_VALID_KEYS: Set[str] = {
 
 def check_svg_style(node: Node, style: str) -> None:
     if not check_style(style, SVG_VALID_KEYS):
-        debug_info(f"BAD style {style} FOR {node.tag}")
-        debug_info(full_node_text(node))
-        raise IllegalHtmlException
+        raise IllegalHtmlException(
+            node=node, message=f"BAD style {style} FOR {node.tag}"
+        )
 
 
 TH_TD_VALID_KEYS: Set[str] = {
@@ -45,6 +43,6 @@ TH_TD_VALID_KEYS: Set[str] = {
 
 def check_th_td_style(node: Node, style: str) -> None:
     if not check_style(style, TH_TD_VALID_KEYS):
-        debug_info(f"BAD style {style} FOR {node.tag}")
-        debug_info(full_node_text(node))
-        raise IllegalHtmlException
+        raise IllegalHtmlException(
+            node=node, message=f"BAD style {style} FOR {node.tag}"
+        )

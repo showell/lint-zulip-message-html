@@ -17,3 +17,9 @@ class ValidationConfig:
     no_attr_tags: Set[str]
     parent_child_map: Dict[str, Set[str]]
     text_friendly_tags: Set[str]
+
+
+@dataclass
+class IllegalHtmlException(Exception):
+    node: Node
+    message: str

@@ -1,6 +1,4 @@
-from html_validator.debug_helpers import debug_info, IllegalHtmlException
-from html_validator.lxml_helpers import full_node_text
-from html_validator.types import Node
+from html_validator.types import IllegalHtmlException, Node
 from typing import Set
 
 VALID_SPAN_CLASSES: Set[str] = {
@@ -147,6 +145,6 @@ def check_span_classes(node: Node) -> None:
 
         for c in classes:
             if c not in VALID_SPAN_CLASSES:
-                debug_info(f"SPAN CLASS {c} is NOT VALID")
-                debug_info(full_node_text(node))
-                raise IllegalHtmlException
+                raise IllegalHtmlException(
+                    node=node, message=f"SPAN CLASS {c} is NOT VALID"
+                )

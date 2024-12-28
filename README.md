@@ -67,8 +67,7 @@ As far as code quality, there is lots of room for improvement.
 I try to keep it formatted with out-of-the-box `ruff`, so the
 code is tidy. I also use `flake8` out-of-the-box.
 
-I use `mypy --strict` for static type safety, although
-there are a few `Any` types.
+I use `mypy --strict` for static type safety.
 
 This code is tested on python 3.12, but I don't use any
 super exotic Python features. It should be relatively simple

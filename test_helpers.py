@@ -1,7 +1,7 @@
 import sys
-from html_validator.debug_helpers import IllegalHtmlException
+from html_validator.lxml_helpers import full_node_text
 from html_validator.validator import validate_html
-from html_validator.types import ValidationConfig
+from html_validator.types import IllegalHtmlException, ValidationConfig
 from typing import List
 
 
@@ -25,6 +25,11 @@ def validate_payloads(*, config: ValidationConfig, payloads: List[str]) -> None:
             continue
         try:
             validate_html(config=config, html=html)
-        except IllegalHtmlException:
+        except IllegalHtmlException as e:
+            print(e.message)
+            print()
+            print("node that failed:")
+            print(full_node_text(e.node))
+            print()
             print("FAIL")
             sys.exit()

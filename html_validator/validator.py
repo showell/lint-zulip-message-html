@@ -1,29 +1,27 @@
-from .debug_helpers import debug_info, IllegalHtmlException
 from .lxml_helpers import parse_html
-from .types import Node, ValidationConfig
+from .types import IllegalHtmlException, Node, ValidationConfig
 from typing import List, Set
 from .lxml_helpers import (
     attr_keys,
-    full_node_text,
     has_raw_text,
 )
 
 
 def validate_no_attr_tags(config: ValidationConfig, node: Node, keys: Set[str]) -> None:
     if keys and node.tag in config.no_attr_tags:
-        debug_info(f"TAG {node.tag} should never have attributes")
-        debug_info(full_node_text(node))
-        raise IllegalHtmlException
+        raise IllegalHtmlException(
+            node=node,
+            message=f"TAG {node.tag} should never have attributes",
+        )
 
 
 def validate_attr_tags(config: ValidationConfig, node: Node, keys: Set[str]) -> None:
     if node.tag in config.attr_tags:
         for key in keys:
             if key not in config.attr_tags[node.tag]:
-                debug_info(f"TAG {node.tag} has unknown attr {key}")
-                debug_info(str(sorted(keys)))
-                debug_info(full_node_text(node))
-                raise IllegalHtmlException
+                raise IllegalHtmlException(
+                    node=node, message=f"TAG {node.tag} has unknown attr {key}"
+                )
 
 
 def validate_attr_classes(config: ValidationConfig, node: Node, keys: Set[str]) -> None:
@@ -31,9 +29,9 @@ def validate_attr_classes(config: ValidationConfig, node: Node, keys: Set[str]) 
         allowed_class_values = config.class_values[node.tag]
         node_class = str(node.attrib["class"])
         if node_class not in allowed_class_values:
-            debug_info(f"TAG {node.tag} has unknown class {node_class}")
-            debug_info(full_node_text(node))
-            raise IllegalHtmlException
+            raise IllegalHtmlException(
+                node=node, message=f"TAG {node.tag} has unknown class {node_class}"
+            )
 
 
 def validate_styles(config: ValidationConfig, node: Node, keys: Set[str]) -> None:
@@ -58,9 +56,9 @@ def validate_leaf_tag(
     config: ValidationConfig, node: Node, children: List[Node]
 ) -> None:
     if children and node.tag in config.leaf_tags:
-        debug_info(f"UNEXPECTED CHILDREN for {node.tag}")
-        debug_info(full_node_text(node))
-        raise IllegalHtmlException
+        raise IllegalHtmlException(
+            node=node, message=f"UNEXPECTED CHILDREN for {node.tag}"
+        )
 
 
 def validate_parent_child_restrictions(
@@ -70,9 +68,9 @@ def validate_parent_child_restrictions(
         if node.tag in config.parent_child_map:
             allowed_child_tags = config.parent_child_map[node.tag]
             if c.tag not in allowed_child_tags:
-                debug_info(f"UNEXPECTED CHILD {c.tag} OF {node.tag}")
-                debug_info(full_node_text(node))
-                raise IllegalHtmlException
+                raise IllegalHtmlException(
+                    node=node, message=f"UNEXPECTED CHILD {c.tag} OF {node.tag}"
+                )
 
 
 def validate_children(config: ValidationConfig, node: Node) -> None:
@@ -86,16 +84,14 @@ def validate_children(config: ValidationConfig, node: Node) -> None:
 
 def validate_text(config: ValidationConfig, node: Node) -> None:
     if has_raw_text(node) and node.tag not in config.text_friendly_tags:
-        debug_info(f"TAG {node.tag} unexpectedly has text")
-        debug_info(full_node_text(node))
-        raise IllegalHtmlException
+        raise IllegalHtmlException(
+            node=node, message=f"TAG {node.tag} unexpectedly has text"
+        )
 
 
 def validate_tag_is_even_allowed(config: ValidationConfig, node: Node) -> None:
     if node.tag not in config.all_tags:
-        debug_info(f"UNSUPPORTED TAG {node.tag}")
-        debug_info(full_node_text(node))
-        raise IllegalHtmlException
+        raise IllegalHtmlException(node=node, message=f"UNSUPPORTED TAG {node.tag}")
 
 
 def validate_custom_rules_for_tag(config: ValidationConfig, node: Node) -> None:
