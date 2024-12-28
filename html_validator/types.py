@@ -15,4 +15,5 @@ class ValidationConfig:
     parent_child_map: Dict[str, Set[str]]
     text_friendly_tags: Set[str]
 
+
 Node = _Element

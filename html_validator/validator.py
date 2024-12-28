@@ -61,7 +61,9 @@ def validate_leaf_tag(config: ValidationConfig, node: Node, children) -> None:
         raise IllegalHtmlException
 
 
-def validate_parent_child_restrictions(config: ValidationConfig, node: Node, children) -> None:
+def validate_parent_child_restrictions(
+    config: ValidationConfig, node: Node, children
+) -> None:
     for c in children:
         if node.tag in config.parent_child_map:
             allowed_child_tags = config.parent_child_map[node.tag]

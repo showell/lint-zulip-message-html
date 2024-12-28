@@ -2,6 +2,7 @@ import sys
 from html_validator.debug_helpers import IllegalHtmlException
 from html_validator.validator import validate_html
 
+
 def ensure_evil_messages_fail_checks(*, config, evil_payloads):
     for html in evil_payloads:
         try:

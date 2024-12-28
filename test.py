@@ -10,10 +10,11 @@ from zulip_message_rules.rules import CONFIG
 
 
 def get_zulip_test_fixture_payloads():
-	json_payload = open("test_data/cases.json").read()
-	fixture_dicts = json.loads(json_payload)["regular_tests"]
-	fixture_payloads = [fixture["expected_output"] for fixture in fixture_dicts]
-	return fixture_payloads
+    json_payload = open("test_data/cases.json").read()
+    fixture_dicts = json.loads(json_payload)["regular_tests"]
+    fixture_payloads = [fixture["expected_output"] for fixture in fixture_dicts]
+    return fixture_payloads
+
 
 ensure_evil_messages_fail_checks(config=CONFIG, evil_payloads=EVIL_MESSAGES)
 

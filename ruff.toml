@@ -1,1 +1,1 @@
-exclude = ["test_data"]
+exclude = ["lib", "test_data"]
