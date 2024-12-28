@@ -1,7 +1,10 @@
 import json
 import sys
-from lib.generic.debug_helpers import IllegalHtmlException, turn_on_debugging
-from lib.generic.validator import validate_html
+
+sys.path.append(".")
+
+from html_validator.debug_helpers import IllegalHtmlException, turn_on_debugging
+from html_validator.validator import validate_html
 from test_data.backend_messages import BACKEND_MESSAGES
 from test_data.design_messages import DESIGN_MESSAGES
 from test_data.feedback_messages import FEEDBACK_MESSAGES

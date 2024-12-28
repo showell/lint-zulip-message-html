@@ -1,6 +1,6 @@
-from ..generic.debug_helpers import debug_info, IllegalHtmlException
-from ..generic.lxml_helpers import full_node_text
-from ..generic.style_helpers import check_style
+from html_validator.debug_helpers import debug_info, IllegalHtmlException
+from html_validator.lxml_helpers import full_node_text
+from html_validator.style_helpers import check_style
 
 
 SPAN_VALID_KEYS = {

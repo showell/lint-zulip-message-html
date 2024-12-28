@@ -1,18 +1,6 @@
 from .debug_helpers import debug_info, IllegalHtmlException
 from .lxml_helpers import parse_html
 
-from ..zulip.rules import (
-    ALL_TAGS,
-    ATTR_TAGS,
-    CLASS_VALUES,
-    CUSTOM_STYLE_CHECKERS,
-    CUSTOM_TAG_HANLDERS,
-    LEAF_TAGS,
-    NO_ATTR_TAGS,
-    PARENT_CHILD_MAP,
-    TEXT_FRIENDLY_TAGS,
-)
-
 from .lxml_helpers import (
     attr_keys,
     full_node_text,

@@ -1,6 +1,6 @@
 from .span_checker import check_span_classes
 from .style_checkers import check_span_style, check_svg_style, check_th_td_style
-from ..generic.types import ValidationConfig
+from html_validator.types import ValidationConfig
 
 ALL_TAGS = {
     "a",
