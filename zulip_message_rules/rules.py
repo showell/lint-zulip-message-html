@@ -152,9 +152,6 @@ for tag, attrs in TAG_ATTR_MAP.items():
         print(f"You need a style checker for {tag} tags")
         assert False
 
-# TODO: Find a way to validate span attributes. Unfortunately, there are a
-#       zillion different span classes in Zulip messages due to things
-#       like katex and emoji handling.
 CLASS_VALUES: Dict[str, Set[str]] = dict(
     a={"message-link", "stream", "stream-topic"},
     div={
@@ -170,6 +167,7 @@ CLASS_VALUES: Dict[str, Set[str]] = dict(
         "youtube-video message_inline_image",
     },
     img={"emoji", "twitter-avatar"},
+    # note that <span> class values are checked in a custom handler
 )
 
 CONFIG: ValidationConfig = ValidationConfig(
