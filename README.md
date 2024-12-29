@@ -36,8 +36,6 @@ Security TODOS:
 - scrutinize data-foo attributes (TODO)
 - make sure the HTML is well-balanced and tidy (TODO)
 
-Other TODOS:
-
 One of the tricky things about Zulip is that it supports
 pygment and katex syntax, so that makes the universe of
 acceptable HTML a bit bigger. The ugliest aspect is that
