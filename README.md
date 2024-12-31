@@ -4,6 +4,13 @@ processor creates.  It's still a bit of work in progress,
 but it's been tested on 500k real-world messages as well
 as 183 test fixture messages.
 
+**This project is on hold for a while, but it has useful
+to crib off if you want to learn how to walk an lxml tree.
+
+It also now correctly shows the current subset of Zulip
+messages in `rules.py`.
+**
+
 Key files:
 
 - `test.py` - run this to see it action
